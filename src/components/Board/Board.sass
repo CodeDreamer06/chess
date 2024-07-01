@@ -1,0 +1,76 @@
+.board
+    display: grid
+    position: relative
+    grid-template-columns: calc(.25*var(--tile-size)) calc(8*var(--tile-size))
+
+.tiles
+    display: grid
+    grid-template-columns: repeat(8,var(--tile-size))
+    grid-template-rows: repeat(8,var(--tile-size))
+    width: calc(8*var(--tile-size))
+
+.tile
+    position: relative
+
+    &--light
+        &[theme=green]
+            background-color: var(--green-light)
+
+        &[theme=brown]
+            background-color: var(--brown-light)
+
+        &[theme=blue]
+            background-color: var(--blue-light)
+
+        &[theme=pink]
+            background-color: var(--pink-light)
+
+    &--dark
+        &[theme=green]
+            background-color: var(--green-dark)
+
+        &[theme=brown]
+            background-color: var(--brown-dark)
+
+        &[theme=blue]
+            background-color: var(--blue-dark)
+
+        &[theme=pink]
+            background-color: var(--pink-dark)
+
+.highlight:after
+    display: block
+    position: absolute
+    content: ''
+    width: calc(.35*var(--tile-size))
+    height: calc(.35*var(--tile-size))
+    background: var(--highlight)
+    border-radius: 50%
+    left: 32%
+    top: 32%
+
+.attacking:after
+    display: block
+    position: absolute
+    content: ''
+    border: 6px solid var(--highlight)
+    width: calc(var(--tile-size) - 12px)
+    height: calc(var(--tile-size) - 12px)
+    border-radius: 50%
+    left: 0
+    top: 0
+
+.checked:after
+    display: block
+    content: ''
+    width: var(--tile-size)
+    height: var(--tile-size)
+    background: var(--check)
+
+.red:after
+    display: block
+    content: ''
+    width: var(--tile-size)
+    height: var(--tile-size)
+    background: var(--red)
+    opacity: 0.8

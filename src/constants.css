@@ -1,0 +1,23 @@
+:root {
+    --tile-size : 100px;
+    --bg-color : #202020;
+    --highlight : rgba(0,0,0,.1);
+    --check : #FEEC48;
+    --red: rgb(235, 97, 80);
+    --light-tile: rgb(234, 233, 210);
+    --dark-tile: rgb(75, 115, 153);
+    --green-light: rgb(238, 238, 210);
+    --green-dark: rgb(118, 150, 86);
+    --brown-light: rgb(240, 217, 181);
+    --brown-dark: rgb(181, 136, 99);
+    --blue-light: rgb(234, 233, 210);
+    --blue-dark: rgb(75, 115, 153);
+    --pink-light: rgb(255, 255, 255);
+    --pink-dark: rgb(252, 216, 221);
+}
+
+@media all and (max-width: 450px) {
+    :root {
+        --tile-size : 50px;
+    }
+}
