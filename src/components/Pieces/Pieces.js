@@ -56,8 +56,15 @@ const Pieces = () => {
             if (newMove.includes("x"))
                 new Audio("https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/default/capture.webm").play()
 
-            else
-                new Audio("https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/default/move-self.webm").play()
+            else if (newMove.includes("O"))
+                new Audio("https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/default/castle.webm").play()
+
+            else {
+                if(opponent === "b")
+                    new Audio("https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/default/move-self.webm").play()
+                else
+                    new Audio("https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/default/move-opponent.webm").play()
+            }
         }
 
     }
@@ -75,11 +82,11 @@ const Pieces = () => {
                 return
             }
             if (piece.endsWith('r') || piece.endsWith('k')){
-                updateCastlingState({piece,file,rank})
+                updateCastlingState({piece, file, rank})
             }
             const newPosition = arbiter.performMove({
                 position: currentPosition,
-                piece,rank,file,
+                piece, rank, file,
                 x,y
             })
             
