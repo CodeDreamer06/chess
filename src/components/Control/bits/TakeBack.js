@@ -1,4 +1,4 @@
-import { useAppContext }from '../../../contexts/Context'
+import { useAppContext } from '../../../contexts/Context'
 import { takeBack } from '../../../reducer/actions/move';
 
 const TakeBack = () => {
@@ -6,8 +6,8 @@ const TakeBack = () => {
     const { dispatch } = useAppContext();
 
     return <div>
-        <button onClick={() => dispatch(takeBack())}>Take Back</button>
+        <button className="take-back" onClick={() => dispatch(takeBack())}>Take Back</button>
     </div>
 }
 
-export default TakeBack
+export default TakeBack;

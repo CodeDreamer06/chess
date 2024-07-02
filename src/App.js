@@ -1,5 +1,5 @@
 import './app.css';
-import { useReducer } from 'react'
+import { useReducer, useRef  } from 'react'
 import { reducer } from './reducer/reducer'
 import Board from './components/Board/Board';
 import { initGameState } from './constants';
@@ -8,10 +8,12 @@ import Control from './components/Control/Control';
 import TakeBack from './components/Control/bits/TakeBack';
 import MovesList from './components/Control/bits/MovesList';
 import ThemeDropdown from './components/Theme';
+import BoardSettings from './components/settings/BoardSettings';
 
 function App() {
     initGameState["theme"] = localStorage.getItem('theme');
     const [appState, dispatch] = useReducer(reducer, initGameState);
+    const dialogRef = useRef(null);
 
     const providerState = {
         appState,
@@ -25,6 +27,8 @@ function App() {
                 <MovesList/>
                 <TakeBack/>
                 <ThemeDropdown />
+                <BoardSettings reference={dialogRef} />
+                <button onClick={e => dialogRef.current.showModal()}>Board settings</button>
             </Control>
         </div>
     </AppContext.Provider>

@@ -1,0 +1,129 @@
+.modal
+    background: #262421
+    border-radius: 0.5rem
+    width: 28rem
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .5)
+    border: none
+    outline: none
+    padding: 0
+
+    &__inner
+        padding: 1rem
+
+    &__bottom
+        display: flex
+        justify-content: space-between
+        padding: 1rem
+        gap: 1rem
+        background: #211f1c
+        margin-top: 2rem
+
+.button
+    background: grey
+    padding: 1rem 2rem
+    color: hsla(0, 0%, 100%, .72)
+    background: hsla(0, 0%, 100%, .1)
+    transition: all 150ms ease-in
+    border: none
+    flex: auto
+    border-radius: 5px
+    padding: 1rem 1rem
+    font-weight: bold
+
+    &:hover
+        background: hsla(0, 0%, 100%, .14)
+
+    &--primary
+        background: #81b64c
+
+        &:hover
+            background: #a3d160
+
+.option
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    option, select
+        color: white
+        background: #3c3a38
+
+    select
+        height: 2rem
+        border-radius: 0.3rem
+        color: hsla(0, 0%, 100%, .72)
+        border: .1rem solid hsla(0,0%,100%,.1)
+        width: 12rem
+        padding-left: 0.5rem
+
+        &:hover
+            border-color: grey
+
+    p
+        color: rgba(white, 0.85)
+
+    // --borderColor: hsla(0,0%,100%,.1);
+    // --borderFocus: hsla(0,0%,100%,.3);
+    // --bgColor: hsla(0,0%,100%,.1);
+    // --textColor: hsla(0,0%,100%,.72);
+    // --arrowColor: hsla(0,0%,100%,.5);
+    // --optionBgColor: #fff;
+    // --optionTextColor: #322e2b;
+
+.switch
+    position: relative
+    display: inline-block
+    width: 60px
+    height: 34px
+
+    & input
+        opacity: 0
+        width: 0
+        height: 0
+
+.toggle
+    color: white
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-top: 1rem
+
+// .slider
+//     position: absolute
+//     cursor: pointer
+//     top: 0
+//     left: 0
+//     right: 0
+//     bottom: 0
+//     background-color: #ccc
+//     -webkit-transition: .4s
+//     transition: .4s
+
+//     &:before
+//         position: absolute
+//         content: ""
+//         height: 26px
+//         width: 26px
+//         left: 4px
+//         bottom: 4px
+//         background-color: white
+//         -webkit-transition: .4s
+//         transition: .4s
+
+//     input:checked + .slider
+//         background-color: #2196F3
+
+//     input:focus + .slider
+//         box-shadow: 0 0 1px #2196F3
+
+//         input:checked + .slider:before
+//             -webkit-transform: translateX(26px)
+//             -ms-transform: translateX(26px)
+//             transform: translateX(26px)
+
+// /* Rounded sliders */
+//     &.round
+//         border-radius: 34px
+
+//     &.round:before
+//         border-radius: 50%
