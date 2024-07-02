@@ -9,6 +9,7 @@ import TakeBack from './components/Control/bits/TakeBack';
 import MovesList from './components/Control/bits/MovesList';
 import ThemeDropdown from './components/Theme';
 import BoardSettings from './components/settings/BoardSettings';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
     initGameState["theme"] = localStorage.getItem('theme');
@@ -24,6 +25,7 @@ function App() {
         <div className="App">
             <Board/>
             <Control>
+                <Sidebar />
                 <MovesList/>
                 <TakeBack/>
                 <ThemeDropdown />
