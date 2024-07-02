@@ -14,6 +14,7 @@ const actionTypes = {
     "CLEAR_HIGHLIGHTS": "CLEAR_HIGHLIGHTS",
     "HIGHLIGHT_SQUARE": "HIGHLIGHT_SQUARE",
     "SET_CANDIDATE_SQUARE": "SET_CANDIDATE_SQUARE",
+    "FLIP_BOARD": "FLIP_BOARD"
 }
 
 export default actionTypes

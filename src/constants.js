@@ -25,4 +25,5 @@ export const initGameState = {
         w : 'both',
         b : 'both'
     },
+    flipState: false
 }

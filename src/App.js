@@ -1,5 +1,5 @@
 import './app.css';
-import { useReducer, useRef  } from 'react'
+import { useReducer, useRef, useEffect, useCallback } from 'react'
 import { reducer } from './reducer/reducer'
 import Board from './components/Board/Board';
 import { initGameState } from './constants';
@@ -10,6 +10,7 @@ import MovesList from './components/Control/bits/MovesList';
 import ThemeDropdown from './components/Theme';
 import BoardSettings from './components/settings/BoardSettings';
 import Sidebar from './components/Sidebar/Sidebar';
+import { flipBoard } from './reducer/actions/game';
 
 function App() {
     initGameState["theme"] = localStorage.getItem('theme');
@@ -20,6 +21,18 @@ function App() {
         appState,
         dispatch
     }
+
+    const handleKeyPress = useCallback(e => {
+        // console.log(`Key pressed: ${e.key}`);
+        if(e.key === 'f') dispatch(flipBoard())
+      }, []);
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress);
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+    }, [handleKeyPress]);
 
     return <AppContext.Provider value={providerState} >
         <div className="App">

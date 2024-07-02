@@ -54,6 +54,14 @@ export const reducer = (state, action) => {
             }
         }
 
+        case actionTypes.FLIP_BOARD: {
+            console.log("flippy")
+            return {
+                ...state,
+                flipState: !state.flipState
+            }
+        }
+
         case actionTypes.CLEAR_HIGHLIGHTS : {
             return {
                 ...state,
