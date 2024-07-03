@@ -1,6 +1,6 @@
 import './Pieces.sass'
 import Piece from './Piece'
-import { useRef  } from 'react'
+import { useRef } from 'react'
 import { useAppContext }from '../../contexts/Context'
 import { openPromotion } from '../../reducer/actions/popup'
 import { getCastlingDirections } from '../../arbiter/getMoves'
@@ -8,7 +8,7 @@ import { updateCastling, detectStalemate, detectInsufficientMaterial, detectChec
 
 import { makeNewMove, clearCandidates } from '../../reducer/actions/move'
 import arbiter from '../../arbiter/arbiter'
-import { getNewMoveNotation } from '../../helper'
+import { getNewMoveNotation } from '../../utils/position'
 
 const Pieces = () => {
     const { appState , dispatch } = useAppContext();

@@ -29,7 +29,7 @@ export const detectCheckmate = winner => {
 
 export const flipBoard = () => {
     return {
-        type: actionTypes.flipBoard
+        type: actionTypes.FLIP_BOARD
     }
 }
 

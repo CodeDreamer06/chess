@@ -17,7 +17,7 @@ const options = {
 const BoardSettings = ({ reference }) => {
     return <dialog id="board-settings" ref={reference} className="modal">
         <div className="modal__inner">
-            {Object.keys(options).map(key => <Option name={key}>{options[key]}</Option>)}
+            {Object.keys(options).map(key => <Option key={key} name={key}>{options[key]}</Option>)}
             <ToggleSwitch>Highlight Moves</ToggleSwitch>
             <ToggleSwitch>Show Legal Moves</ToggleSwitch>
         </div>

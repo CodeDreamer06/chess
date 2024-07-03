@@ -10,7 +10,7 @@ const Option = ({ children, name }) => {
     return <div className="option">
         <p>{children}</p>
         <select
-            name="option" 
+            name="option"
             defaultValue={options[boardSettings[name]]}
             id={children}
             onChange={({ target }) => dispatch(changeSettings(name, options.indexOf(target.value)))}>

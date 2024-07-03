@@ -1,5 +1,5 @@
 import './Files.sass'
-import { getCharacter } from '../../../helper'
+import { getCharacter } from '../../../utils/general'
 
 const Files = ({ files, show }) => 
     <div className="files">

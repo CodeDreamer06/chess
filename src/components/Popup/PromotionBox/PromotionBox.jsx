@@ -1,5 +1,5 @@
-import { useAppContext }from '../../../contexts/Context'
-import { copyPosition, getNewMoveNotation,  } from '../../../helper';
+import { useAppContext } from '../../../contexts/Context'
+import { copyPosition, getNewMoveNotation } from '../../../utils/position';
 import { makeNewMove , clearCandidates } from '../../../reducer/actions/move';
 import './PromotionBox.css'
 
