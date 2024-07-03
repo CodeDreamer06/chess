@@ -10,7 +10,7 @@ import MovesList from './components/Control/bits/MovesList';
 import ThemeDropdown from './components/Theme';
 import BoardSettings from './components/settings/BoardSettings';
 import Sidebar from './components/Sidebar/Sidebar';
-import { flipBoard } from './reducer/actions/game';
+import { flipBoard, showInnerMarkers } from './reducer/actions/game';
 
 function App() {
     initGameState["theme"] = localStorage.getItem('theme');
@@ -44,6 +44,8 @@ function App() {
                 <ThemeDropdown />
                 <BoardSettings reference={dialogRef} />
                 <button onClick={e => dialogRef.current.showModal()}>Board settings</button>
+                <button onClick={e => dispatch(showInnerMarkers(true))}>Inner coordinates</button>
+                <button onClick={e => dispatch(showInnerMarkers(false))}>disable Inner coordinates</button>
             </Control>
         </div>
     </AppContext.Provider>

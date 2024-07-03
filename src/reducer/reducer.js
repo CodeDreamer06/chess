@@ -62,6 +62,14 @@ export const reducer = (state, action) => {
             }
         }
 
+        case actionTypes.SHOW_INNER_MARKERS: {
+            console.log(action.payload)
+            return {
+                ...state,
+                showInnerMarkers: action.payload
+            }
+        }
+
         case actionTypes.CLEAR_HIGHLIGHTS : {
             return {
                 ...state,

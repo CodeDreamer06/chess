@@ -23,13 +23,20 @@ export const detectInsufficientMaterial = () => {
 export const detectCheckmate = winner => {
     return {
         type: actionTypes.WIN,
-        payload : winner
+        payload: winner
     }
 }
 
 export const flipBoard = () => {
     return {
         type: actionTypes.FLIP_BOARD,
+    }
+}
+
+export const showInnerMarkers = innerBoolean => {
+    return {
+        type: actionTypes.SHOW_INNER_MARKERS,
+        payload: innerBoolean
     }
 }
 
