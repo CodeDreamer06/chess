@@ -1,5 +1,5 @@
 import actionTypes from '../actionTypes';
-import { initGameState } from '../../constants';
+import { initGameState } from '../../data/constants';
 
 export const updateCastling = direction => {
     return {

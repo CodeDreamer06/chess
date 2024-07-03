@@ -1,6 +1,6 @@
 import { useAppContext }from '../../contexts/Context'
 import { changeSettings } from '../../reducer/actions/game';
-import { BoardSettingOptions } from '../../constants';
+import { BoardSettingOptions } from '../../data/constants';
 
 const Option = ({ children, name }) => {
     const { appState, dispatch } = useAppContext();

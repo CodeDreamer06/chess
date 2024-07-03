@@ -11,7 +11,7 @@ import GameEnds from '../Popup/GameEnds/GameEnds'
 import arbiter from '../../arbiter/arbiter'
 import { getKingPosition } from '../../arbiter/getMoves'
 import { clearCandidates } from '../../reducer/actions/move';
-import { BoardSettingOptions } from '../../constants';
+import { BoardSettingOptions } from '../../data/constants';
 
 const Board = () => {
     const ranks = Array(8).fill().map((x,i) => 8-i)
@@ -76,7 +76,7 @@ const Board = () => {
 
     const themeClass = BoardSettingOptions.board[theme].toLowerCase().split(' ').join('-');
 
-return <div className='board'>
+    return <div className='board'>
         <Ranks ranks={ranks} show={coordinates === 2}/>
         <div className='tiles'>
             {ranks.map((rank, i) =>

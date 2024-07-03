@@ -6,4 +6,4 @@ const Files = ({ files, show }) =>
         {files.map(file => <span key={file} style={{ display: show ? 'block' : 'none' }}>{getCharacter(file)}</span>)}
     </div>
 
-export default Files
+export default Files;

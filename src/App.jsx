@@ -2,14 +2,14 @@ import './app.css';
 import { useReducer, useRef, useEffect, useCallback } from 'react'
 import { reducer } from './reducer/reducer'
 import Board from './components/Board/Board';
-import { initGameState } from './constants';
+import { initGameState } from './data/constants';
 import AppContext from './contexts/Context'
-import Control from './components/Control/Control';
-import TakeBack from './components/Control/bits/TakeBack';
-import MovesList from './components/Control/bits/MovesList';
+import Control from './layouts/Control';
+import TakeBack from './components/Control/TakeBack';
+import MovesList from './components/Control/MovesList';
 import BoardSettings from './components/settings/BoardSettings';
 import Sidebar from './components/Sidebar/Sidebar';
-import { flipBoard, changeSettings, initializeSettings } from './reducer/actions/game';
+import { flipBoard, initializeSettings } from './reducer/actions/game';
 import ControlIcons from './components/ControlIcons';
 
 function App() {

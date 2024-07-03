@@ -6,11 +6,11 @@ const Piece = ({ rank, file, piece }) => {
     const { appState, dispatch } = useAppContext();
     const { turn, castleDirection, position : currentPosition, candidateSquare } = appState
 
-    const onDragStart = e => {
-        e.dataTransfer.effectAllowed = "move";
-        e.dataTransfer.setData("text/plain",`${piece},${rank},${file}`)
+    const onDragStart = ({ target, dataTransfer }) => {
+        dataTransfer.effectAllowed = "move";
+        dataTransfer.setData("text/plain",`${piece},${rank},${file}`)
         setTimeout(() => {
-            e.target.style.display = 'none'
+            target.style.display = 'none'
         },0)
 
         dispatch(clearHighlights())
@@ -29,7 +29,7 @@ const Piece = ({ rank, file, piece }) => {
         }
 
     }
-    const onDragEnd = e => e.target.style.display = 'block';
+    const onDragEnd = ({ target }) => target.style.display = 'block';
 
     const onClick = e => {
         if (turn === piece[0]) {
@@ -61,4 +61,4 @@ const Piece = ({ rank, file, piece }) => {
         onClick={onClick}/>
 }
 
-export default Piece
+export default Piece;
