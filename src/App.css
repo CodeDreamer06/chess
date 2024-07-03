@@ -12,6 +12,11 @@
   src: url(./assets/montserrat-700.woff2) format('woff2');
 }
 
+@font-face {
+  font-family: 'chess glyph';
+  src: url('./assets/chessglyph-v3.woff2') format('woff2');
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -23,7 +28,7 @@ html, body {
   height: 100vh;
   background: var(--bg-color);
   font-family: 'montserrat', sans-serif;
-  grid-template-columns: auto 220px;
+  grid-template-columns: auto 240px;
 
 }
 
@@ -39,4 +44,50 @@ html, body {
 ::backdrop {
   background: black;
   opacity: 0.6;
+}
+
+.control-icons {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+#show {
+  display: none;
+}
+
+.control-icons:hover #show {
+  display: block;
+}
+
+.control-icon::before {
+  font-family: 'chess glyph';
+  font-size: 1.3rem;
+  color: white;
+  opacity: .5;
+}
+
+.control-icon {
+  background: none;
+  border: none;
+  height: min-content;
+  padding: 0;
+  cursor: pointer;
+}
+
+.gear-icon::before {
+  content: '\00B7';
+}
+
+.flip-icon::before {
+  content: '\0066';
+}
+
+.smiley-icon::before {
+  content: '\1F44';
+}
+
+.board-wrapper {
+  display: flex;
+  gap: .5rem;
 }

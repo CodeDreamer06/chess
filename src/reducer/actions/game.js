@@ -33,13 +33,6 @@ export const flipBoard = () => {
     }
 }
 
-export const showInnerMarkers = innerBoolean => {
-    return {
-        type: actionTypes.SHOW_INNER_MARKERS,
-        payload: innerBoolean
-    }
-}
-
 export const changeSettings = (setting, value) => {
     return {
         type: actionTypes.CHANGE_SETTINGS,

@@ -27,7 +27,7 @@ export const initGameState = {
     },
     boardSettings: {
         pieces: 4,
-        board: 1,
+        board: 22,
         soundTheme: 0,
         coordinates: 0,
         pieceNotation: 0,

@@ -18,8 +18,8 @@ const Board = () => {
     const files = Array(8).fill().map((x,i) => i+1)
 
     const { appState, dispatch } = useAppContext();
-    const { turn, highlightedSquares, showInnerMarkers, boardSettings } = appState
-    const { board: theme } = boardSettings
+    const { turn, highlightedSquares, boardSettings } = appState
+    const { board: theme, coordinates } = boardSettings
     const position = appState.position[appState.position.length - 1];
     // dispatch(highlightSquare(2, 2, "blue"));
     const checkTile = (() => {
@@ -77,9 +77,9 @@ const Board = () => {
     const themeClass = BoardSettingOptions.board[theme].toLowerCase().split(' ').join('-');
 
 return <div className='board'>
-        <Ranks ranks={ranks} hide={showInnerMarkers}/>
+        <Ranks ranks={ranks} show={coordinates === BoardSettingOptions.coordinates[2]}/>
         <div className='tiles'>
-            {ranks.map((rank, i) => 
+            {ranks.map((rank, i) =>
                 files.map((file, j) =>
                     <div
                         key={file + '' + rank}
@@ -89,7 +89,7 @@ return <div className='board'>
                         j={j}
                         className={`${getClassName(7 - i, j)}`}
                         theme={themeClass}>
-                        {showInnerMarkers && 
+                        {coordinates === BoardSettingOptions.coordinates[1] &&
                             <><span className={generateMarkerClasses(i, j, 'files')} theme={themeClass}>{getMarkers(i, j, 'files')}</span>
                             <span className={generateMarkerClasses(i, j, 'ranks')} theme={themeClass}>{getMarkers(i, j, 'ranks')}</span></>}
                     </div>
@@ -102,7 +102,7 @@ return <div className='board'>
             <GameEnds />
         </Popup>
 
-        <Files files={files} hide={showInnerMarkers}/>
+        <Files files={files} show={coordinates === BoardSettingOptions.coordinates[2]}/>
     </div>    
 }
 

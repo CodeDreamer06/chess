@@ -9,10 +9,9 @@ import TakeBack from './components/Control/bits/TakeBack';
 import MovesList from './components/Control/bits/MovesList';
 import BoardSettings from './components/settings/BoardSettings';
 import Sidebar from './components/Sidebar/Sidebar';
-import { flipBoard, showInnerMarkers } from './reducer/actions/game';
+import { flipBoard } from './reducer/actions/game';
 
 function App() {
-    initGameState["theme"] = localStorage.getItem('theme');
     const [appState, dispatch] = useReducer(reducer, initGameState);
     const dialogRef = useRef(null);
 
@@ -35,15 +34,19 @@ function App() {
 
     return <AppContext.Provider value={providerState} >
         <div className="App">
-            <Board/>
+            <div className="board-wrapper">
+                <Board/>
+                <div className="control-icons">
+                    <button className="gear-icon control-icon" onClick={e => dialogRef.current.showModal()}></button>
+                    <button className="flip-icon control-icon" id="show" onClick={e => dispatch(flipBoard())}></button>
+                    <button className="smiley-icon control-icon" id="show"></button>
+                </div>
+            </div>
             <Control>
                 <Sidebar />
                 <MovesList/>
                 <TakeBack/>
                 <BoardSettings reference={dialogRef} />
-                <button onClick={e => dialogRef.current.showModal()}>Board settings</button>
-                <button onClick={e => dispatch(showInnerMarkers(true))}>Inner coordinates</button>
-                <button onClick={e => dispatch(showInnerMarkers(false))}>disable Inner coordinates</button>
             </Control>
         </div>
     </AppContext.Provider>
