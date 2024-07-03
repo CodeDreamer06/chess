@@ -1,7 +1,7 @@
 import actionTypes from '../actionTypes';
 import { initGameState } from '../../constants';
 
-export const updateCastling = (direction) => {
+export const updateCastling = direction => {
     return {
         type: actionTypes.CAN_CASTLE,
         payload: direction,
@@ -29,7 +29,7 @@ export const detectCheckmate = winner => {
 
 export const flipBoard = () => {
     return {
-        type: actionTypes.FLIP_BOARD,
+        type: actionTypes.flipBoard
     }
 }
 
@@ -39,6 +39,11 @@ export const changeSettings = (setting, value) => {
         payload: {setting, value}
     }
 }
+
+export const initializeSettings = config => ({
+    type: actionTypes.INIT_SETTINGS,
+    payload: config
+})
 
 export const setupNewGame = () => {
     return {

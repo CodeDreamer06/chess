@@ -9,7 +9,8 @@ import TakeBack from './components/Control/bits/TakeBack';
 import MovesList from './components/Control/bits/MovesList';
 import BoardSettings from './components/settings/BoardSettings';
 import Sidebar from './components/Sidebar/Sidebar';
-import { flipBoard } from './reducer/actions/game';
+import { flipBoard, changeSettings, initializeSettings } from './reducer/actions/game';
+import ControlIcons from './components/ControlIcons';
 
 function App() {
     const [appState, dispatch] = useReducer(reducer, initGameState);
@@ -24,6 +25,12 @@ function App() {
         console.log(`Key pressed: ${e.key}`);
         if(e.key === 'f') dispatch(flipBoard())
       }, []);
+      localStorage.getItem('settings')
+    
+    useEffect(() => {
+        if (localStorage.getItem('settings'))
+            dispatch(initializeSettings(JSON.parse(localStorage.getItem('settings'))))
+    }, []);
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyPress);
@@ -36,11 +43,7 @@ function App() {
         <div className="App">
             <div className="board-wrapper">
                 <Board/>
-                <div className="control-icons">
-                    <button className="gear-icon control-icon" onClick={e => dialogRef.current.showModal()}></button>
-                    <button className="flip-icon control-icon" id="show" onClick={e => dispatch(flipBoard())}></button>
-                    <button className="smiley-icon control-icon" id="show"></button>
-                </div>
+                <ControlIcons dialogRef={dialogRef}/>
             </div>
             <Control>
                 <Sidebar />

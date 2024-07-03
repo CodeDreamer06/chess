@@ -67,10 +67,18 @@ export const reducer = (state, action) => {
         case actionTypes.CHANGE_SETTINGS: {
             let { boardSettings } = state
             boardSettings[action.payload.setting] = action.payload.value
+            localStorage.setItem('settings', JSON.stringify(boardSettings))
 
             return {
                 ...state,
                 boardSettings
+            }
+        }
+
+        case actionTypes.INIT_SETTINGS: {
+            return {
+                ...state,
+                boardSettings: action.payload
             }
         }
 
