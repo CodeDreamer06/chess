@@ -11,13 +11,15 @@ import GameEnds from '../Popup/GameEnds/GameEnds'
 import arbiter from '../../arbiter/arbiter'
 import { getKingPosition } from '../../arbiter/getMoves'
 import { clearCandidates } from '../../reducer/actions/move';
+import { BoardSettingOptions } from '../../constants';
 
 const Board = () => {
     const ranks = Array(8).fill().map((x,i) => 8-i)
     const files = Array(8).fill().map((x,i) => i+1)
 
     const { appState, dispatch } = useAppContext();
-    const { turn, highlightedSquares, theme, showInnerMarkers } = appState
+    const { turn, highlightedSquares, showInnerMarkers, boardSettings } = appState
+    const { board: theme } = boardSettings
     const position = appState.position[appState.position.length - 1];
     // dispatch(highlightSquare(2, 2, "blue"));
     const checkTile = (() => {
@@ -33,7 +35,8 @@ const Board = () => {
     const getClassName = (i, j) => {
         let c = 'tile'
         c += (i + j) % 2 === 0 ? ' tile--dark ' : ' tile--light '
-        if (appState.candidateMoves?.find(m => m[0] === i && m[1] === j)){
+
+        if (appState.candidateMoves?.find(m => m[0] === i && m[1] === j)) {
             if (position[i][j])
                 c += ' attacking'
             else
@@ -69,7 +72,9 @@ const Board = () => {
         if (orientation === 'ranks') if(j === 0) return 8 - i
     }
 
-    const generateMarkerClasses = (i, j, kind) => `markers markers--${kind} markers--${(i + j) % 2 === 0 ? 'light' : 'dark'}-square`;
+    const generateMarkerClasses = (i, j, kind) => `markers markers--${kind} markers--${(i + j) % 2 === 0 ? 'dark' : 'light'}-text`;
+
+    const themeClass = BoardSettingOptions.board[theme].toLowerCase().split(' ').join('-');
 
 return <div className='board'>
         <Ranks ranks={ranks} hide={showInnerMarkers}/>
@@ -83,10 +88,10 @@ return <div className='board'>
                         i={i}
                         j={j}
                         className={`${getClassName(7 - i, j)}`}
-                        theme={theme}>
+                        theme={themeClass}>
                         {showInnerMarkers && 
-                            <><span className={generateMarkerClasses(i, j, 'files')}>{getMarkers(i, j, 'files')}</span>
-                            <span className={generateMarkerClasses(i, j, 'ranks')}>{getMarkers(i, j, 'ranks')}</span></>}
+                            <><span className={generateMarkerClasses(i, j, 'files')} theme={themeClass}>{getMarkers(i, j, 'files')}</span>
+                            <span className={generateMarkerClasses(i, j, 'ranks')} theme={themeClass}>{getMarkers(i, j, 'ranks')}</span></>}
                     </div>
             ))}
         </div>

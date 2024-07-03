@@ -7,7 +7,6 @@ import AppContext from './contexts/Context'
 import Control from './components/Control/Control';
 import TakeBack from './components/Control/bits/TakeBack';
 import MovesList from './components/Control/bits/MovesList';
-import ThemeDropdown from './components/Theme';
 import BoardSettings from './components/settings/BoardSettings';
 import Sidebar from './components/Sidebar/Sidebar';
 import { flipBoard, showInnerMarkers } from './reducer/actions/game';
@@ -23,7 +22,7 @@ function App() {
     }
 
     const handleKeyPress = useCallback(e => {
-        // console.log(`Key pressed: ${e.key}`);
+        console.log(`Key pressed: ${e.key}`);
         if(e.key === 'f') dispatch(flipBoard())
       }, []);
 
@@ -41,7 +40,6 @@ function App() {
                 <Sidebar />
                 <MovesList/>
                 <TakeBack/>
-                <ThemeDropdown />
                 <BoardSettings reference={dialogRef} />
                 <button onClick={e => dialogRef.current.showModal()}>Board settings</button>
                 <button onClick={e => dispatch(showInnerMarkers(true))}>Inner coordinates</button>

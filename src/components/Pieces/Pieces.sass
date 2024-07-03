@@ -1,0 +1,26 @@
+.pieces
+    right: 0
+    top: 0
+    position: absolute
+    left: calc(.25*var(--tile-size))
+    bottom: calc(.25*var(--tile-size))
+
+.piece
+    width: 12.5%
+    height: 12.5%
+    background-size: 100%
+    position: absolute
+    cursor: grab
+
+    &:active
+        cursor: grabbing
+
+    @each $piece in 'bk', 'bq', 'br', 'bb', 'bn', 'bp', 'wk', 'wq', 'wr', 'wb', 'wn', 'wp'
+        &.#{$piece}
+            background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/space/150/#{$piece}.png')
+            // background-image: url('../../assets/#{$piece}.png')
+
+    @for $y from 0 through 7
+        @for $x from 0 through 7
+            &.p-#{$x}#{$y}
+                transform: translate(#{$x * 100 * 1%}, #{(7 - $y) * 100 * 1%})

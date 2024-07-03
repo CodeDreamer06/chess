@@ -1,5 +1,16 @@
 @import './constants.css';
-@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap');
+
+@font-face {
+  font-family: 'montserrat';
+  font-weight: 800;
+  src: url(./assets/montserrat-800.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'montserrat';
+  font-weight: 700;
+  src: url(./assets/montserrat-700.woff2) format('woff2');
+}
 
 html, body {
   margin: 0;
@@ -11,7 +22,7 @@ html, body {
   place-content: center;
   height: 100vh;
   background: var(--bg-color);
-  font-family: 'Sofia Sans', sans-serif;
+  font-family: 'montserrat', sans-serif;
   grid-template-columns: auto 220px;
 
 }

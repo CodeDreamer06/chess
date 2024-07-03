@@ -1,4 +1,4 @@
-import './Pieces.css'
+import './Pieces.sass'
 import Piece from './Piece'
 import { useRef  } from 'react'
 import { useAppContext }from '../../contexts/Context'
@@ -13,7 +13,6 @@ import { getNewMoveNotation } from '../../helper'
 const Pieces = () => {
     const { appState , dispatch } = useAppContext();
     const currentPosition = appState.position[appState.position.length - 1]
-
     const ref = useRef()
 
     const updateCastlingState = ({piece, file, rank}) => {
@@ -70,7 +69,7 @@ const Pieces = () => {
     }
 
     const move = e => {
-        const { x,y } = calculateCoords(e)
+        const { x, y } = calculateCoords(e)
         const [piece,rank,file] = e.dataTransfer.getData("text").split(',')
 
         if(appState.candidateMoves.find(m => m[0] === x && m[1] === y)){

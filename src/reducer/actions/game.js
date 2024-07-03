@@ -40,6 +40,13 @@ export const showInnerMarkers = innerBoolean => {
     }
 }
 
+export const changeSettings = (setting, value) => {
+    return {
+        type: actionTypes.CHANGE_SETTINGS,
+        payload: {setting, value}
+    }
+}
+
 export const setupNewGame = () => {
     return {
         type: actionTypes.NEW_GAME,

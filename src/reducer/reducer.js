@@ -55,15 +55,26 @@ export const reducer = (state, action) => {
         }
 
         case actionTypes.FLIP_BOARD: {
-            console.log("flippy")
+            let { position } = state
+            position[position.length - 1] = [...position[position.length - 1]].reverse()
+
             return {
                 ...state,
-                flipState: !state.flipState
+                position
+            }
+        }
+
+        case actionTypes.CHANGE_SETTINGS: {
+            let { boardSettings } = state
+            boardSettings[action.payload.setting] = action.payload.value
+
+            return {
+                ...state,
+                boardSettings
             }
         }
 
         case actionTypes.SHOW_INNER_MARKERS: {
-            console.log(action.payload)
             return {
                 ...state,
                 showInnerMarkers: action.payload
