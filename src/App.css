@@ -17,6 +17,11 @@
   src: url('./assets/chessglyph-v3.woff2') format('woff2');
 }
 
+/* @font-face {
+  font-family: 'Segoe UI';
+  src: url('./assets/');
+} */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -85,6 +90,14 @@ html, body {
 
 .smiley-icon::before {
   content: '\1F44';
+}
+
+.hint-icon::before {
+  font-family: 'chess glyph';
+  font-size: 1.3rem;
+  color: white;
+  opacity: .5;
+  content: '\0067';
 }
 
 .board-wrapper {

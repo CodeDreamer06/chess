@@ -19,7 +19,10 @@ const Sidebar = props => {
             </div>
         </div>
         <div className="sidebar__bottom">
-            <button>Hint</button>
+            <button className="hint">
+                <span className="hint-icon"></span>
+                Hint
+            </button>
             <div className="bottom-buttons">
                 
             </div>
