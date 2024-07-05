@@ -36,11 +36,11 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
 .tile
     position: relative
 
-    // @each $mode, $colors in $themes
-    //     &--#{$mode}
-    //         @each $theme, $color in $colors
-    //             &[theme=#{$theme}]
-    //                 background-color: #{$color}
+    @each $mode, $colors in $themes
+        &--#{$mode}
+            @each $theme, $color in $colors
+                &[theme=#{$theme}]
+                    background-color: #{$color}
 
 .highlight:after
     display: block
@@ -50,18 +50,19 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
     height: calc(.35*var(--tile-size))
     background: var(--highlight)
     border-radius: 50%
-    left: 32%
-    top: 32%
+    left: calc(.2*var(--tile-size))
+    top: calc(.32*var(--tile-size))
 
 .attacking:after
     display: block
+    box-sizing: border-box
     position: absolute
     content: ''
-    border: 6px solid var(--highlight)
-    width: calc(var(--tile-size) - 12px)
-    height: calc(var(--tile-size) - 12px)
+    border: 9px solid rgba(black, .1)
+    width: var(--tile-size)
+    height: var(--tile-size)
     border-radius: 50%
-    left: 0
+    left: -10px
     top: 0
 
 .checked:after

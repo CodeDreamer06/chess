@@ -46,6 +46,7 @@ const Pieces = () => {
     }
 
     const playSounds = (newMove, newPosition, opponent) => {
+        if (appState.boardSettings.soundTheme === 0) return
         const soundTheme = BoardSettingOptions.soundTheme[appState.boardSettings.soundTheme].toLowerCase();
 
         if (arbiter.isPlayerInCheck({

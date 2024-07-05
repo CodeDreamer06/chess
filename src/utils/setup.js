@@ -1,3 +1,5 @@
+import { initGameState } from '../data/constants';
+
 export const createPosition = () => {
 
     const position = new Array(8).fill('').map(x => new Array(8).fill(''))
@@ -26,4 +28,10 @@ export const createPosition = () => {
     position[7][7] = 'br'
 
     return position
+}
+
+export const getInitialGameState = () => {
+    if (localStorage.getItem('settings'))
+        initGameState.boardSettings = JSON.parse(localStorage.getItem('settings'))
+    return initGameState
 }
