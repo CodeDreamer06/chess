@@ -48,7 +48,6 @@ function App() {
             <Control>
                 <Sidebar />
                 <MovesList/>
-                <TakeBack/>
                 <BoardSettings reference={dialogRef} />
             </Control>
         </div>

@@ -1,10 +1,11 @@
 import arbiter from '../../arbiter/arbiter';
 import { useAppContext } from '../../contexts/Context'
+import { BoardSettingOptions } from '../../data/constants';
 import { generateCandidates, clearHighlights, clearCandidates, setCandidateSquare } from '../../reducer/actions/move';
 
 const Piece = ({ rank, file, piece }) => {
     const { appState, dispatch } = useAppContext();
-    const { turn, castleDirection, position : currentPosition, candidateSquare } = appState
+    const { turn, castleDirection, position : currentPosition, candidateSquare, boardSettings } = appState
 
     const onDragStart = ({ target, dataTransfer }) => {
         dataTransfer.effectAllowed = "move";
@@ -55,6 +56,7 @@ const Piece = ({ rank, file, piece }) => {
  
     return <div 
         className={`piece ${piece} p-${file}${rank}`}
+        style={{ backgroundImage: `url('https://images.chesscomfiles.com/chess-themes/pieces/${BoardSettingOptions.pieces[boardSettings.pieces].toLowerCase().replace(/[- ]/g, "_")}/150/${piece}.png')` }}
         draggable={true}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}

@@ -2,8 +2,8 @@
     border-radius: .5rem
     background: #262522
     overflow: hidden
-    height: 80vh
-    width: 25rem
+    height: 100vh
+    width: 28rem
     margin-left: .5rem
     display: flex
     flex-direction: column
@@ -51,7 +51,21 @@
                 font-weight: 800
 
         .time
-            color: grey
+            $progress-color: #908f8f
+            color: $progress-color
+            position: relative
+            font-size: 1.4rem
+            font-weight: 700
+            display: flex
+            gap: .5rem
+            align-items: center
+
+            .circular-progress
+                width: 16px
+                height: 16px
+                border-radius: 50%
+                border: 2px solid $progress-color
+                background: conic-gradient($progress-color 25%, transparent 0)
 
     &__bottom
         padding-bottom: 2rem
@@ -81,3 +95,16 @@
 
             span
                 font-size: 1rem
+
+        .bottom-buttons
+            display: flex
+            justify-content: space-between
+            margin-top: 1rem
+
+            .chevron-icon
+                &:first-child::before
+                    content: '\002C'
+
+                &:nth-child(2)::before
+                    content: '\2026'
+                    color: grey
