@@ -6,7 +6,7 @@ import { openPromotion } from '../../reducer/actions/popup'
 import { getCastlingDirections } from '../../arbiter/getMoves'
 import { updateCastling, detectStalemate, detectInsufficientMaterial, detectCheckmate} from '../../reducer/actions/game'
 
-import { makeNewMove, clearCandidates } from '../../reducer/actions/move'
+import { makeNewMove, clearCandidates, highlightSquare, clearHighlights } from '../../reducer/actions/move'
 import arbiter from '../../arbiter/arbiter'
 import { getNewMoveNotation } from '../../utils/position'
 import { BoardSettingOptions } from '../../data/constants'
@@ -122,6 +122,22 @@ const Pieces = () => {
         e.preventDefault()
         move(e);
     }
+
+    const onContextMenu = e => {
+        let color = 'red';
+        e.preventDefault()
+        dispatch(clearCandidates());
+
+        const { x, y } = calculateCoords(e)
+        if (e.shiftKey) color = 'green'
+        else if (e.ctrlKey) color = 'orange'
+        else if (e.altKey) color = 'blue'
+        dispatch(highlightSquare(x, y, color));
+    }
+
+    const onClick = e => {
+        dispatch(clearHighlights())
+    }
     
     const onDragOver = e => {e.preventDefault()}
 
@@ -129,6 +145,8 @@ const Pieces = () => {
         className='pieces'
         ref={ref}
         onDrop={onDrop}
+        onContextMenu={onContextMenu}
+        onClick={onClick}
         onDragOver={onDragOver}>
         {currentPosition.map((r, rank) =>
             r.map((_, file) => 

@@ -1,5 +1,3 @@
-$themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: var(--blue-light),pink: var(--pink-light)),dark: (green: var(--green-dark), brown: var(--brown-dark), blue: #282f3f, pink: var(--pink-dark)))
-
 .board
     display: grid
     position: relative
@@ -14,18 +12,12 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
         font-weight: bold
         font-size: 1.2rem
 
-        &--ranks
-            margin: 0.5rem
-
         &--files
             right: 0
             bottom: 0
 
-        @each $mode, $colors in $themes
-            &--#{$mode}-text
-                @each $theme, $color in $colors
-                    &[theme=#{$theme}]
-                        color: #{$color}
+        &--dark-text
+            color: black
 
 .tiles
     display: grid
@@ -36,12 +28,6 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
 .tile
     position: relative
 
-    @each $mode, $colors in $themes
-        &--#{$mode}
-            @each $theme, $color in $colors
-                &[theme=#{$theme}]
-                    background-color: #{$color}
-
 .highlight:after
     display: block
     position: absolute
@@ -50,8 +36,8 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
     height: calc(.35*var(--tile-size))
     background: var(--highlight)
     border-radius: 50%
-    left: calc(.2*var(--tile-size))
-    top: calc(.32*var(--tile-size))
+    left: 32%
+    top: 32%
 
 .attacking:after
     display: block
@@ -62,8 +48,6 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
     width: var(--tile-size)
     height: var(--tile-size)
     border-radius: 50%
-    left: -10px
-    top: 0
 
 .checked:after
     display: block
@@ -72,10 +56,25 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
     height: var(--tile-size)
     background: var(--check)
 
-.red:after
+@mixin context-highlight
     display: block
     content: ''
     width: var(--tile-size)
     height: var(--tile-size)
-    background: var(--red)
     opacity: 0.8
+
+.red:after
+    @include context-highlight
+    background: var(--red)
+
+.orange:after
+    @include context-highlight
+    background: rgb(255, 170, 0)
+
+.green:after
+    @include context-highlight
+    background: rgb(172, 206, 89)
+
+.blue:after
+    @include context-highlight
+    background: rgb(82, 176, 220)

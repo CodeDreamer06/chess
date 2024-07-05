@@ -1,8 +1,5 @@
 import './Board.sass'
 import { useAppContext }from '../../contexts/Context'
-
-import Ranks from './bits/Ranks'
-import Files from './bits/Files'
 import Pieces from '../Pieces/Pieces'
 import PromotionBox from '../Popup/PromotionBox/PromotionBox'
 import Popup from '../Popup/Popup'
@@ -10,18 +7,16 @@ import GameEnds from '../Popup/GameEnds/GameEnds'
 
 import arbiter from '../../arbiter/arbiter'
 import { getKingPosition } from '../../arbiter/getMoves'
-import { clearCandidates } from '../../reducer/actions/move';
 import { BoardSettingOptions } from '../../data/constants';
 
 const Board = () => {
     const ranks = Array(8).fill().map((x,i) => 8-i)
     const files = Array(8).fill().map((x,i) => i+1)
 
-    const { appState, dispatch } = useAppContext();
+    const { appState } = useAppContext();
     const { turn, highlightedSquares, boardSettings } = appState
     const { board: theme, coordinates } = boardSettings
     const position = appState.position[appState.position.length - 1];
-    // dispatch(highlightSquare(2, 2, "blue"));
     const checkTile = (() => {
         const isInCheck =  (arbiter.isPlayerInCheck({
             positionAfterMove : position,
@@ -52,15 +47,6 @@ const Board = () => {
         return c
     }
 
-    // FIXME this function is not called for some reason
-    const onContextMenu = e => {
-        e.preventDefault()
-        dispatch(clearCandidates());
-        // dispatch(highlightSquare())
-        console.log("highlight some square");
-        console.log(e);
-    }
-
     const onClick = e => {
         e.preventDefault()
         console.log(e)
@@ -77,13 +63,11 @@ const Board = () => {
     const themeClass = BoardSettingOptions.board[theme].toLowerCase().split(' ').join('-');
 
     return <div className='board' style={{ backgroundImage: `url('https://images.chesscomfiles.com/chess-themes/boards/${BoardSettingOptions.board[boardSettings.board].toLowerCase().replace(/[- ]/g, "_")}/100.png')` }}>
-        <Ranks ranks={ranks} show={coordinates === 2}/>
         <div className='tiles'>
             {ranks.map((rank, i) =>
                 files.map((file, j) =>
                     <div
                         key={file + '' + rank}
-                        onContextMenu={onContextMenu}
                         onClick={onClick}
                         i={i}
                         j={j}
@@ -101,8 +85,6 @@ const Board = () => {
             <PromotionBox />
             <GameEnds />
         </Popup>
-
-        <Files files={files} show={coordinates === 2}/>
     </div>    
 }
 

@@ -2,6 +2,8 @@ import './app.css';
 import { useReducer, useRef, useEffect, useCallback } from 'react'
 import { reducer } from './reducer/reducer'
 import Board from './components/Board/Board';
+import Ranks from './components/Board/bits/Ranks'
+import Files from './components/Board/bits/Files'
 import AppContext from './contexts/Context'
 import Control from './layouts/Control';
 import MovesList from './components/Control/MovesList';
@@ -15,6 +17,8 @@ function App() {
     const [appState, dispatch] = useReducer(reducer, getInitialGameState());
     const dialogRef = useRef(null);
     const providerState = { appState, dispatch }
+    const ranks = Array(8).fill().map((x,i) => 8-i)
+    const files = Array(8).fill().map((x,i) => i+1)
 
     const handleKeyPress = useCallback(e => {
         console.log(`Key pressed: ${e.key}`);
@@ -31,7 +35,11 @@ function App() {
     return <AppContext.Provider value={providerState} >
         <div className="App">
             <div className="board-wrapper">
-                <Board/>
+                <Ranks ranks={ranks} show={appState.boardSettings.coordinates === 2}/>
+                <div>
+                    <Board/>
+                    <Files files={files} show={appState.boardSettings.coordinates === 2}/>
+                </div>
                 <ControlIcons dialogRef={dialogRef}/>
             </div>
             <Control>
