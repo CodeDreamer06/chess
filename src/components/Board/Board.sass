@@ -1,12 +1,14 @@
-$themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: var(--blue-light),pink: var(--pink-light)),dark: (green: var(--green-dark), brown: var(--brown-dark), blue: var(--blue-dark), pink: var(--pink-dark)))
+$themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: var(--blue-light),pink: var(--pink-light)),dark: (green: var(--green-dark), brown: var(--brown-dark), blue: #282f3f, pink: var(--pink-dark)))
 
 .board
     display: grid
     position: relative
-    grid-template-columns: calc(.25*var(--tile-size)) calc(8*var(--tile-size))
+    width: calc(8 * var(--tile-size))
+    height: calc(8 * var(--tile-size))
 
     .markers
         color: white
+        opacity: 0.4
         position: absolute
         margin: 0.5rem
         font-weight: bold
@@ -27,18 +29,18 @@ $themes: (light: (green: var(--green-light), brown: var(--brown-light), blue: va
 
 .tiles
     display: grid
-    grid-template-columns: repeat(8,var(--tile-size))
-    grid-template-rows: repeat(8,var(--tile-size))
-    width: calc(8*var(--tile-size))
+    grid-template-columns: repeat(8, var(--tile-size))
+    grid-template-rows: repeat(8, var(--tile-size))
+    width: calc(8 * var(--tile-size))
 
 .tile
     position: relative
 
-    @each $mode, $colors in $themes
-        &--#{$mode}
-            @each $theme, $color in $colors
-                &[theme=#{$theme}]
-                    background-color: #{$color}
+    // @each $mode, $colors in $themes
+    //     &--#{$mode}
+    //         @each $theme, $color in $colors
+    //             &[theme=#{$theme}]
+    //                 background-color: #{$color}
 
 .highlight:after
     display: block

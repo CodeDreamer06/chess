@@ -27,11 +27,15 @@ html, body {
   padding: 0;
 }
 
+body {
+  background: url('https://images.chesscomfiles.com/uploads/v1/theme/101324-0.2c93b2ca.jpeg');
+  background-size: cover;
+}
+
 .App {
   display: grid;
   place-content: center;
   height: 100vh;
-  background: var(--bg-color);
   font-family: 'montserrat', sans-serif;
   grid-template-columns: auto 240px;
 

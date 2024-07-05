@@ -76,7 +76,7 @@ const Board = () => {
 
     const themeClass = BoardSettingOptions.board[theme].toLowerCase().split(' ').join('-');
 
-    return <div className='board'>
+    return <div className='board' style={{ backgroundImage: `url('https://images.chesscomfiles.com/chess-themes/boards/${BoardSettingOptions.board[boardSettings.board].toLowerCase().replace(/[- ]/g, "_")}/100.png')` }}>
         <Ranks ranks={ranks} show={coordinates === 2}/>
         <div className='tiles'>
             {ranks.map((rank, i) =>
