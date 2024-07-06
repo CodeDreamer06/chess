@@ -126,10 +126,26 @@ const Pieces = () => {
         if (e.button === 2) setArrowStart(calculateCoords(e));
     }
 
+    const isDiagonalOneSquare = (start, end) => Math.abs(start.x - end.x) === 1 && Math.abs(start.y - end.y) === 1
+
+    const isToTheRight = (start, end) => start.y < end.y;
+
+    const isAbove = (start, end) => start.x < end.x;
+
+    // const isStraightDown = (start, end) => 
+
     const onMouseUp = e => {
         const coords = calculateCoords(e);
-        if (e.button === 2 && !isEqual(arrowStart, coords))
-            drawArrow(arrowStart.y * 100 + 50, (7 - arrowStart.x) * 100 + 15, coords.y * 100 + 50, (7 - coords.x) * 100 + 50, 22, 50, 35)
+        if (e.button === 2 && !isEqual(arrowStart, coords)) {
+            let xiOffset = 0;
+            let yiOffset = 0;
+            if (isDiagonalOneSquare(arrowStart, coords)) {
+                console.log(arrowStart.x, coords.x)
+                if (isToTheRight(arrowStart, coords)) xiOffset = 20; else xiOffset = -20;
+                if (isAbove(arrowStart, coords)) yiOffset = 15; else yiOffset = 55;
+            }
+            drawArrow(arrowStart.y * 100 + 50 + xiOffset, (7 - arrowStart.x) * 100 + 15 + yiOffset, coords.y * 100 + 50, (7 - coords.x) * 100 + 50, 22, 50, 35)
+        }
     }
 
     const transform = (xy, angle, xy0) => {
@@ -191,14 +207,14 @@ const Pieces = () => {
     }
 
     return <div
-    className='pieces'
-    ref={ref}
-    onDrop={onDrop}
-    onContextMenu={onContextMenu}
-    onClick={onClick}
-    onDragOver={onDragOver}
-    onMouseDown={onMouseDown}
-    onMouseUp={onMouseUp}>
+        className='pieces'
+        ref={ref}
+        onDrop={onDrop}
+        onContextMenu={onContextMenu}
+        onClick={onClick}
+        onDragOver={onDragOver}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}>
         {currentPosition.map((r, rank) =>
             r.map((_, file) => 
                 currentPosition[rank][file] &&

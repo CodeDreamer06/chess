@@ -85,13 +85,6 @@ const Board = () => {
         </div>
 
         <Pieces/>
-        {/* <canvas
-            ref={canvasRef}
-            id="arrowCanvas"
-            width={800}
-            height={800}
-            style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
-        /> */}
         <Popup>
             <PromotionBox />
             <GameEnds />
