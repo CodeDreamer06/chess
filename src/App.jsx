@@ -12,6 +12,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { flipBoard } from './reducer/actions/game';
 import ControlIcons from './components/ControlIcons';
 import { getInitialGameState } from './utils/setup';
+import { DraggableComponent } from './testy';
 
 function App() {
     const [appState, dispatch] = useReducer(reducer, getInitialGameState());
@@ -47,6 +48,7 @@ function App() {
                 <MovesList/>
                 <BoardSettings reference={dialogRef} />
             </Control>
+            {/* <DraggableComponent /> */}
         </div>
     </AppContext.Provider>
 }

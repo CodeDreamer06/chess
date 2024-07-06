@@ -5,11 +5,10 @@ import { useAppContext }from '../../contexts/Context'
 import { openPromotion } from '../../reducer/actions/popup'
 import { getCastlingDirections } from '../../arbiter/getMoves'
 import { updateCastling, detectStalemate, detectInsufficientMaterial, detectCheckmate} from '../../reducer/actions/game'
-
 import { makeNewMove, clearCandidates, highlightSquare, clearHighlights } from '../../reducer/actions/move'
-import arbiter from '../../arbiter/arbiter'
 import { getNewMoveNotation } from '../../utils/position'
-import { BoardSettingOptions } from '../../data/constants'
+import playSounds from '../../utils/sound'
+import arbiter from '../../arbiter/arbiter'
 
 const Pieces = () => {
     const { appState , dispatch } = useAppContext();
@@ -45,33 +44,6 @@ const Pieces = () => {
         return { x, y }
     }
 
-    const playSounds = (newMove, newPosition, opponent) => {
-        if (appState.boardSettings.soundTheme === 0) return
-        const soundTheme = BoardSettingOptions.soundTheme[appState.boardSettings.soundTheme].toLowerCase();
-
-        if (arbiter.isPlayerInCheck({
-            positionAfterMove: newPosition,
-            player: opponent
-        }))
-            new Audio(`https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/${soundTheme}/move-check.webm`).play()
-        
-        else {
-            if (newMove.includes("x"))
-                new Audio(`https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/${soundTheme}/capture.webm`).play()
-
-            else if (newMove.includes("O"))
-                new Audio(`https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/${soundTheme}/castle.webm`).play()
-
-            else {
-                if(opponent === "b")
-                    new Audio(`https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/${soundTheme}/move-self.webm`).play()
-                else
-                    new Audio(`https://images.chesscomfiles.com/chess-themes/sounds/_WEBM_/${soundTheme}/move-opponent.webm`).play()
-            }
-        }
-
-    }
-
     const move = e => {
         const { x, y } = calculateCoords(e)
         const [piece, rank, file] = e.dataTransfer.getData("text").split(',')
@@ -103,7 +75,7 @@ const Pieces = () => {
             })
 
             dispatch(makeNewMove({newPosition, newMove}))
-            playSounds(newMove, newPosition, opponent)
+            playSounds(newMove, newPosition, opponent, appState.boardSettings.soundTheme);
 
             if (arbiter.insufficientMaterial(newPosition))
                 dispatch(detectInsufficientMaterial())

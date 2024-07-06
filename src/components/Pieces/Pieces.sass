@@ -10,9 +10,21 @@
     height: 12.5%
     background-size: 100%
     position: absolute
+    // cursor: grab
+    cursor: url("https://www.google.com/intl/en_ALL/mapfiles/openhand.cur"), all-scroll
+    cursor: -webkit-grab
+    cursor: -moz-grab
+    cursor: -o-grab
+    cursor: -ms-grab
     cursor: grab
 
     &:active
+        // cursor: grabbing
+        cursor: url("https://www.google.com/intl/en_ALL/mapfiles/closedhand.cur"), all-scroll
+        cursor: -webkit-grabbing
+        cursor: -moz-grabbing
+        cursor: -o-grabbing
+        cursor: -ms-grabbing
         cursor: grabbing
 
     @for $y from 0 through 7
