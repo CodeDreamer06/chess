@@ -136,6 +136,12 @@ const Pieces = () => {
 
     const isHorizontal = (start, end) => start.x === end.x
 
+    const isKnight = (start, end) => {
+        const xDifference = Math.abs(start.x - end.x)
+        const yDifference =Math.abs(start.y - end.y)
+        return (xDifference === 1 && yDifference === 2) || (xDifference === 2 && yDifference === 1)
+    }
+
     const onMouseUp = e => {
         const coords = calculateCoords(e);
         if (e.button === 2 && !isEqual(arrowStart, coords)) {
