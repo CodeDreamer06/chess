@@ -132,7 +132,9 @@ const Pieces = () => {
 
     const isAbove = (start, end) => start.x < end.x;
 
-    // const isStraightDown = (start, end) => 
+    const isStraightDown = (start, end) => start.y === end.y && start.x > end.x
+
+    const isHorizontal = (start, end) => start.x === end.x
 
     const onMouseUp = e => {
         const coords = calculateCoords(e);
@@ -140,10 +142,11 @@ const Pieces = () => {
             let xiOffset = 0;
             let yiOffset = 0;
             if (isDiagonalOneSquare(arrowStart, coords)) {
-                console.log(arrowStart.x, coords.x)
                 if (isToTheRight(arrowStart, coords)) xiOffset = 20; else xiOffset = -20;
                 if (isAbove(arrowStart, coords)) yiOffset = 15; else yiOffset = 55;
             }
+            else if (isStraightDown(arrowStart, coords)) yiOffset = 70;
+            else if (isHorizontal(arrowStart, coords)) yiOffset = 35;
             drawArrow(arrowStart.y * 100 + 50 + xiOffset, (7 - arrowStart.x) * 100 + 15 + yiOffset, coords.y * 100 + 50, (7 - coords.x) * 100 + 50, 22, 50, 35)
         }
     }
