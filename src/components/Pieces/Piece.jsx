@@ -1,7 +1,7 @@
 import arbiter from '../../arbiter/arbiter';
 import { useAppContext } from '../../contexts/Context'
-import { BoardSettingOptions } from '../../data/constants';
 import { generateCandidates, clearHighlights, clearCandidates, setCandidateSquare } from '../../reducer/actions/move';
+import { getPieceImage } from '../../services/pieceGenerator';
 
 const Piece = ({ rank, file, piece }) => {
     const { appState, dispatch } = useAppContext();
@@ -58,7 +58,7 @@ const Piece = ({ rank, file, piece }) => {
  
     return <div
         className={`piece ${piece} p-${file}${rank}`}
-        style={{ backgroundImage: `url('https://images.chesscomfiles.com/chess-themes/pieces/${BoardSettingOptions.pieces[boardSettings.pieces].toLowerCase().replace(/[- ]/g, "_")}/150/${piece}.png')` }}
+        style={{ backgroundImage: getPieceImage(piece, boardSettings.pieces) }}
         draggable={true}
         onDragStart={onDragStart}
         // onDragEnter={onDragEnter}

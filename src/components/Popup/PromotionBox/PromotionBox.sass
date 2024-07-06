@@ -1,0 +1,32 @@
+
+.promotion-choices
+    height: 20rem
+    // height: 12.5%
+    width: 10rem
+    display: flex
+    flex-direction: column
+    background: red
+
+    &.promotion-piece
+        width: 1rem
+        height: 1rem
+        background: green
+        // width: 25%
+        // height: 100%
+        border: 1px solid var(--dark-tile)
+
+        &:hover
+            box-shadow: 0 0 0 5px var(--dark-tile) inset
+            transform: scale(1.05)
+
+    // &:is(.wq,.bq)
+    //     left: 0
+
+    // &:is(.wr,.br)
+    //     left: 25%
+
+    // &:is(.wb,.bb)
+    //     left: 50%
+
+    // &:is(.wn,.bn)
+    //     left: 75%

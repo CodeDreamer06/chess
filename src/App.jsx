@@ -13,6 +13,7 @@ import { flipBoard } from './reducer/actions/game';
 import ControlIcons from './components/ControlIcons';
 import { getInitialGameState } from './utils/setup';
 import { DraggableComponent } from './testy';
+import PromotionBox from './components/Popup/PromotionBox/PromotionBox';
 
 function App() {
     const [appState, dispatch] = useReducer(reducer, getInitialGameState());

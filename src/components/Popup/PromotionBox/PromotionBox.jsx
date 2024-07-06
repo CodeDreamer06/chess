@@ -1,12 +1,12 @@
 import { useAppContext } from '../../../contexts/Context'
 import { copyPosition, getNewMoveNotation } from '../../../utils/position';
 import { makeNewMove , clearCandidates } from '../../../reducer/actions/move';
-import './PromotionBox.css'
+import './PromotionBox.sass'
+import { getPieceImage } from '../../../services/pieceGenerator';
 
 const PromotionBox = ({ onClosePopup }) => {
-
     const { appState , dispatch } = useAppContext();
-    const {promotionSquare} = appState;
+    const { promotionSquare, position, boardSettings } = appState;
 
     if (!promotionSquare)
         return null
@@ -39,7 +39,7 @@ const PromotionBox = ({ onClosePopup }) => {
 
     const onClick = option => {
         onClosePopup()
-        const newPosition = copyPosition (appState.position[appState.position.length - 1])
+        const newPosition = copyPosition (position[position.length - 1])
         
         newPosition[promotionSquare.rank][promotionSquare.file] = ''
         newPosition[promotionSquare.x][promotionSquare.y] = color+option
@@ -47,22 +47,20 @@ const PromotionBox = ({ onClosePopup }) => {
             ...appState.selectedPiece,
             x : promotionSquare.rank,
             y : promotionSquare.file,
-            position:appState.position[appState.position.length - 1],
+            position:position[position.length - 1],
             promotesTo : option
         })
         dispatch(clearCandidates())
-
-        dispatch(makeNewMove({newPosition,newMove}))
+        dispatch(makeNewMove({newPosition, newMove}))
 
     }
 
-    return <div className="popup--inner promotion-choices" style={getPromotionBoxPosition()}>
-        {options.map (option => 
-            <div key={option}
-                onClick = {() => onClick(option)} 
-                className={`piece ${color}${option}`}
-            />
-        )}
+    return <div className="promotion-choices" style={getPromotionBoxPosition()}>
+        {options.map(option => <div key={option} style={{ backgroundImage: getPieceImage('bq', boardSettings.pieces) }}/>)}
+            {/* <div key={option} */}
+                 {/* onClick = {() => onClick(option)}
+                 className={`promotion-piece`}/>)} */}
+                {/* ${color}${option} */}
     </div>
 
 }
