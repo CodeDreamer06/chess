@@ -138,9 +138,11 @@ const Pieces = () => {
 
     const isKnight = (start, end) => {
         const xDifference = Math.abs(start.x - end.x)
-        const yDifference =Math.abs(start.y - end.y)
+        const yDifference = Math.abs(start.y - end.y)
         return (xDifference === 1 && yDifference === 2) || (xDifference === 2 && yDifference === 1)
     }
+
+    const generateKnightMidPointInCoordinates = (start, end) => [start.y * 100 + 50, (7 - end.x) * 100 + 50];
 
     const onMouseUp = e => {
         const coords = calculateCoords(e);
@@ -153,7 +155,9 @@ const Pieces = () => {
             }
             else if (isStraightDown(arrowStart, coords)) yiOffset = 70;
             else if (isHorizontal(arrowStart, coords)) yiOffset = 35;
-            drawArrow(arrowStart.y * 100 + 50 + xiOffset, (7 - arrowStart.x) * 100 + 15 + yiOffset, coords.y * 100 + 50, (7 - coords.x) * 100 + 50, 22, 50, 35)
+
+            if (isKnight(arrowStart, coords)) drawKnightArrow(arrowStart.y * 100 + 50, (7 - arrowStart.x) * 100 + 15, ...generateKnightMidPointInCoordinates(arrowStart, coords), coords.y * 100 + 50, (7 - coords.x) * 100 + 50, 22)
+            else drawArrow(arrowStart.y * 100 + 50 + xiOffset, (7 - arrowStart.x) * 100 + 15 + yiOffset, coords.y * 100 + 50, (7 - coords.x) * 100 + 50, 22, 50, 35)
         }
     }
 
@@ -168,15 +172,44 @@ const Pieces = () => {
     
         return [xy0[0] + new_rel_x, xy0[1] + new_rel_y];
     }
+
+    const drawKnightArrow = (x0, y0, x1, y1, x2, y2, width) => {
+        const context = canvasRef.current.getContext('2d');
+        context.fillStyle = "rgba(255, 170, 0, 0.65)";
+        const length = Math.sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0))
+        let angle  = Math.atan2(y1 - y0, x1 - x0);
+        angle -= Math.PI / 2;
+
+        let p0 = [x0, y0];
+        let p1 = [x0 + width / 2, y0];
+        let p2 = [x0 - width / 2, y0];
+        let p3 = [x0 + width / 2, y0 + length + 11];
+        let p4 = [x0 - width / 2, y0 + length + 11];
+
+        const points = [p1, p2, p3, p4];
+        const transformedPoints = points.map(point => transform(point, angle, p0));
+        [p1, p2, p3, p4] = transformedPoints;
+        
+        context.moveTo(p1[0], p1[1]);
+        context.beginPath();
+        context.lineTo(p3[0], p3[1]);
+        context.lineTo(p4[0], p4[1]);
+        context.lineTo(p2[0], p2[1]);
+        context.lineTo(p1[0], p1[1]);
+        context.closePath();
+        context.fill();
+
+        drawArrow(x1 + 11, y1, x2, y2, 22, 50, 35)
+    }
     
     const drawArrow = (x0, y0, x1, y1, width, head_width, head_length) => { 
-        const context = canvasRef.current.getContext('2d');;
+        const context = canvasRef.current.getContext('2d');
         context.fillStyle = "rgba(255, 170, 0, 0.65)";
-        const length = Math.sqrt((x1 - x0) * (x1 - x0) +(y1 - y0) * (y1 - y0))
+        const length = Math.sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0))
         let angle  = Math.atan2(y1 - y0, x1 - x0);
         angle -= Math.PI / 2;
     
-        let p0 = [x0,y0];
+        let p0 = [x0, y0];
     
         // order will be: p1 -> p3 -> p5 -> p7 -> p6 -> p4 -> p2
         // formulate the two base points
@@ -194,13 +227,9 @@ const Pieces = () => {
         // end point of the arrow
         let p7 = [x0, y0 + length];
     
-        p1 = transform(p1,angle,p0);
-        p2 = transform(p2,angle,p0);
-        p3 = transform(p3,angle,p0);
-        p4 = transform(p4,angle,p0);
-        p5 = transform(p5,angle,p0);
-        p6 = transform(p6,angle,p0)
-        p7 = transform(p7,angle,p0);
+        const points = [p1, p2, p3, p4, p5, p6, p7];
+        const transformedPoints = points.map(point => transform(point, angle, p0));
+        [p1, p2, p3, p4, p5, p6, p7] = transformedPoints;
     
         context.moveTo(p1[0], p1[1]);
         context.beginPath();
