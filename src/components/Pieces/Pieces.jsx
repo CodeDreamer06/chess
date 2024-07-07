@@ -199,7 +199,7 @@ const Pieces = () => {
         context.closePath();
         context.fill();
 
-        drawArrow(x1 + 11, y1, x2, y2, 22, 50, 35)
+        drawArrow(x1 + (x2 > x1 ? 11 : -11), y1, x2, y2, 22, 50, 35)
     }
     
     const drawArrow = (x0, y0, x1, y1, width, head_width, head_length) => { 
